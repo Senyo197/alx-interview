@@ -2,50 +2,38 @@
 """
 N-Queens Solver
 
-This module provides functions to solve the N-Queens problem, which involves
+This module provides a function for solving the
+N-Queens problem, which involves
 placing N queens on an NxN chessboard such that no two queens threaten each
-other. The module includes functions to validate queen positions, place queens
-on the board, and find all possible solutions for a given board size.
+other. The function takes an integer N as input
+and returns a list of solutions,
+where each solution is a list of (row, column) pairs.
 
 Functions:
     is_valid_position(board, row, col):
-        Checks if a position is valid for placing a queen on the board.
-
+        Check if a position is valid for placing a queen on the board.
     put_next_queen(board, row):
-        Tries to place a queen on the next row of the board at a valid position
-
+        Try to place a queen on the next row of the board at a valid position.
     find_nqueens_solution(board, solutions=[]):
-        Solves the N-Queens problem for a given board and appends the solutions
-        to the given list.
-
+        Solve the N-Queens problem for a given
+        board and append the solutions to
+        the given list.
     find_solutions(n):
-        Runs the N-Queens solver for a given board size and prints the
-        solutions.
+        Run the N-Queens solver for a given board size.
 
 Example:
     To solve the N-Queens problem for a board of size 8, run the script as
-    follows:
-    $ python3 nqueens.py 8
+    follows: $ python3 nqueens.py 8
 """
 
 import sys
 
 
 def is_valid_position(board, row, col):
-    """
-    Checks if placing a queen at the specified position is valid.
-
-    Args:
-        board (list of list of int): The chessboard.
-        row (int): The row index.
-        col (int): The column index.
-
-    Returns:
-        bool: True if the position is valid, False otherwise.
+    """check for validity of the queens position
     """
     b_size = len(board)
-    if sum(board[row]) != 0 or sum([board[i][col] for i in range(b_size)]) !=
-    0:
+    if sum(board[row]) or sum([board[i][col] for i in range(b_size)]) != 0:
         return False
 
     for i, j in [(1, 1), (-1, -1), (1, -1), (-1, 1)]:
@@ -58,15 +46,7 @@ def is_valid_position(board, row, col):
 
 
 def put_next_queen(board, row):
-    """
-    Attempts to place a queen on the next row at a valid position.
-
-    Args:
-        board (list of list of int): The chessboard.
-        row (int): The row index.
-
-    Returns:
-        bool: True if a queen was placed, False otherwise.
+    """Makes sure a queen is placed at a valid position
     """
     st, end = 0, len(board)
     if sum(board[row]) == 1:
@@ -81,12 +61,10 @@ def put_next_queen(board, row):
 
 
 def find_nqueens_solution(board, solutions=[]):
-    """
-    Solves the N-Queens problem and appends solutions to the list.
+    """Solves the nqueens problem
 
     Args:
-        board (list of list of int): The chessboard.
-        solutions (list of list of list of int): The list to store solutions.
+        n (int): size of board
     """
     n = len(board)
     row = 0
@@ -113,17 +91,13 @@ def find_nqueens_solution(board, solutions=[]):
 
 
 def find_solutions(n):
-    """
-    Finds and prints all solutions for the N-Queens problem of size n.
-
-    Args:
-        n (int): The size of the board.
+    """Find each solution and prints them
     """
     board = [[0 for col in range(n)] for row in range(n)]
     solutions = []
     find_nqueens_solution(board, solutions)
-    for solution in solutions:
-        print(solution)
+    for row in solutions:
+        print(row)
 
 
 if __name__ == '__main__':
