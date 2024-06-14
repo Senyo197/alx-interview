@@ -6,7 +6,6 @@
 def island_perimeter(grid):
     """
     Calculate the perimeter of the island described in grid.
-    
     :param grid: List[List[int]] - 2D list representing the island grid.
                    0 represents water and 1 represents land.
     :return: int - The perimeter of the island.
@@ -28,7 +27,8 @@ def island_perimeter(grid):
                 if i > 0 and grid[i - 1][j] == 1:
                     perimeter -= 2
 
-                # If the cell to the left is also land, it reduces the perimeter by 2
+                ''' If the cell to the left is also land, it reduces the
+                 perimeter by 2'''
                 if j > 0 and grid[i][j - 1] == 1:
                     perimeter -= 2
 
